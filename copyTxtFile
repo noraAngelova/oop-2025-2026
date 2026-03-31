@@ -1,0 +1,19 @@
+    std::fstream fileName, fileName2;
+    fileName.open("test.txt");
+    // std::ios::trunc - ако файлът не съществува и трябва да се създаде или съществува и съдържанието му трябва да бъде изтрито
+    // алтернативен вариант - първо отваряме файлът за писане, а след това и за четене.
+    fileName2.open("test2.txt", std::ios::in | std::ios::out | std::ios::trunc); 
+
+    if (!fileName.is_open()) { // аналогично на !fileName
+        std::cerr << "fileName not found" << std::endl;
+        return 1;
+    }
+
+    if (!fileName2.is_open()) { // аналогично на !fileName2
+        std::cerr << "fileName2 not found" << std::endl;
+        return 1;
+    }
+
+    char ch;
+    while (fileName.get(ch)) 
+        fileName2.put(ch);

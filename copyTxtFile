@@ -17,3 +17,6 @@
     char ch;
     while (fileName.get(ch)) 
         fileName2.put(ch);
+
+    fileName.close();
+    fileName2.close();

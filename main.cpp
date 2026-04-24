@@ -1,10 +1,15 @@
 #include "person.hpp"
+#include "student.hpp"
+#include "teacher.hpp"
 #include <iostream>
+#include <fstream>
+#include <cmath>
 
 
 int main() {
+
     // Създава обект с конструктор по подразбиране
-    Person p; 
+    Person p;
     std::cout << "Default Person object: ";
     p.print();
     std::cout << std::endl;
@@ -29,12 +34,75 @@ int main() {
     pMove.print();
     std::cout << std::endl;
     
+    Person pMove = std::move(Person("Move", 25));
+    pMove.print();
+    std::cout << std::endl;
+
 
     std::cout << "Person object (move operator =): ";
-    Person pMove2;
-    pMove2 = std::move(pMove);
+    Person pMove2 = std::move(pMove);
     pMove2.print();
     std::cout << std::endl;
 
+    
+    // Сравнява два обекта
+    if (p == p2) {
+        std::cout << "It is the same person" << std::endl;
+    }
+
+    // Сравнява два обекта по възраст
+    if (p < p2) {
+        std::cout << "p is younger than p2" << std::endl;
+    }
+    
+    // Въвежда и извежда информация за потребител от поток
+    Person streamPerson;
+    std::cout << "\n Enter a user data - capacity, name and age:" << std::endl;
+    std::cin >> streamPerson;
+    std::cout << streamPerson << std::endl;
+
+    // Създава обект с конструктор с параметри
+    Student st("Georgi Ivanov", 19, "0MI00013422");
+    std::cout << "Student object: ";
+    st.print();
+
+    std::cout << std::endl;
+
+    // Създава обект с конструктор за копиране
+    std::cout << "Student object (copy constructor): ";
+    Student st2 = st;
+    st2.print();
+
+    std::cout << std::endl;
+
+    // Извършва присвояване между два създадени обекта чрез оператора за присвояване
+    Student st3;
+    st3 = st;
+    std::cout << "Student object (operator=): ";
+    st3.print();
+
+    std::cout << std::endl;
+
+    // Създава обект с конструктор без параметри
+    Teacher t1;
+    t1.print();
+    std::cout << std::endl;
+
+    // Създава обект с конструктор за копиране
+    Teacher t2 = t1;
+    t2.print();
+    std::cout << std::endl;
+
+    // Извършва присвояване между два създадени обекта чрез оператора за присвояване
+    Teacher t3;
+    t3 = t1;
+    t3.print();
+    std::cout << std::endl;
+    
+    Person** arr = new Person * [10];
+    arr[0] = new Person();
+    delete arr[0];
+    delete[10] arr;
+   
     return 0;
 }
